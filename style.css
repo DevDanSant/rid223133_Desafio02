@@ -6,6 +6,7 @@
 <article>	Artigo	conteúdo independente (post de blog)
 <aside>	Lateral	barras laterais, informações extras
 <footer>	Rodapé	parte final da página */
+
 /* ================= RESET ================= */
 * {
   margin: 0;
@@ -39,10 +40,17 @@ header h1 {
 
   display: grid;
   grid-template-columns: 2fr 1fr;
+  grid-template-areas:
+    "post sidebar"
+    "posts sidebar";
   gap: 2rem;
 }
 
-/* POST DESTAQUE */
+/* ================= POST DESTAQUE ================= */
+#img-opniao {
+  grid-area: post;
+}
+
 #img-opniao img {
   width: 100%;
   height: auto;
@@ -50,25 +58,21 @@ header h1 {
   box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
 }
 
-/* ================= SIDEBAR ================= */
-#aside {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+/* ================= POSTS MAIS RECENTES ================= */
+#grid-posts {
+  grid-area: posts;
 }
 
-#aside img {
+#titulo-posts {
+  max-width: 46.5rem;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+#titulo-posts img {
   width: 100%;
   height: auto;
-  border-radius: 0.75rem;
-  box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.15);
-}
-
-/* ================= POSTS MAIS RECENTES ================= */
-article {
-  max-width: 75rem;
-  margin: 0 auto;
-  padding: 0 2rem 3rem;
+  display: block;
 }
 
 /* GRID DE CARDS */
@@ -92,33 +96,53 @@ article {
   display: block;
 }
 
-/* ================= FOOTER ================= */
-footer {
-  background-color: #02A28F;
-  color: white;
-  text-align: center;
-  padding: 1rem;
+/* ================= SIDEBAR ================= */
+#aside {
+  grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
+#aside img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.15);
+}
+
+footer{
+  background-color: #02A28F;
+  color: white;
+  padding: 1rem 2rem;
+
+}
+
+footer p{
+  text-align: center;
+
+}
+
+/* ================= MOBILE ================= */
 @media (max-width: 48rem) {
 
   header h1 {
     text-align: center;
   }
 
-  /* Container principal vira coluna */
   .conteiner {
     grid-template-columns: 1fr;
-    margin: 1rem auto;
+    grid-template-areas:
+      "post"
+      "posts"
+      "sidebar";
     padding: 0 1rem;
   }
 
-  /* Cards em 1 coluna */
   #cards-grid {
     grid-template-columns: 1fr;
   }
 
-  article {
-    padding: 0 1rem 2rem;
-  }
 }
+
+  
